@@ -16,6 +16,10 @@ public struct IndirectValue<Accessor: IndirectAccessor> {
     public var wrappedValue: Accessor.Output {
         Accessor.access(intermediate)
     }
+    
+    public var projectedValue: Accessor.Input {
+        return intermediate
+    }
 }
 
 extension IndirectValue: Encodable where Accessor.Input: Encodable {
