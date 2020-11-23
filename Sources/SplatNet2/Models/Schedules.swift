@@ -11,8 +11,8 @@ extension Schedules {
         public var stageA: Stage
         public var stageB: Stage
         public var gameMode: GameMode
-        @Timestamp public var startTime: Date
-        @Timestamp public var endTime: Date
+        @Timestamp public var startTime: SN2Date
+        @Timestamp public var endTime: SN2Date
         public var rule: GameRule
     }
 }

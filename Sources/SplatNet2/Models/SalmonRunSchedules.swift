@@ -8,8 +8,8 @@ extension SalmonRunSchedules {
     
     public struct Schedule: Decodable {
         
-        @Timestamp public var startTime: Date
-        @Timestamp public var endTime: Date
+        @Timestamp public var startTime: SN2Date
+        @Timestamp public var endTime: SN2Date
         public var stage: Stage?
         public var weapons: [Weapon]?
     }
@@ -19,7 +19,7 @@ extension SalmonRunSchedules.Schedule {
     
     public struct Stage: Decodable {
         public var name: String
-        @SN2RemoteResource public var image: URL
+        @SN2WebResource public var image: SN2URL
     }
     
     public struct Weapon: Decodable {
@@ -30,13 +30,13 @@ extension SalmonRunSchedules.Schedule {
         public struct WeaponDetail: Decodable {
             public var id: String
             public var name: String
-            @SN2RemoteResource public var thumbnail: URL
-            @SN2RemoteResource public var image: URL
+            @SN2WebResource public var thumbnail: SN2URL
+            @SN2WebResource public var image: SN2URL
         }
         
         public struct CoopSpecialWeapon: Decodable {
             public var name: String
-            @SN2RemoteResource public var image: URL
+            @SN2WebResource public var image: SN2URL
         }
     }
 }

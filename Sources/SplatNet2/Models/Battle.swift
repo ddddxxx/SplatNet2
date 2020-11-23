@@ -17,7 +17,7 @@ public struct Battle: Decodable {
     public var playerResult: TeamMember
     public var myTeamMembers: [TeamMember]?
     public var otherTeamMembers: [TeamMember]?
-    @Timestamp public var startTime: Date
+    @Timestamp public var startTime: SN2Date
 
     public enum BattleType: String, Decodable {
         case regular
@@ -25,32 +25,5 @@ public struct Battle: Decodable {
         case league
         case fes
         case `private`
-    }
-}
-
-public extension Battle {
-    
-    var myPower: Int? {
-        myEstimateLeaguePoint ?? estimateGachiPower
-    }
-    
-    var otherPower: Int? {
-        otherEstimateLeaguePoint
-    }
-    
-    var myPoint: Double {
-        if rule.key == .turfWar {
-            return myTeamPercentage!
-        } else {
-            return Double(myTeamCount!)
-        }
-    }
-    
-    var otherPoint: Double {
-        if rule.key == .turfWar {
-            return otherTeamPercentage!
-        } else {
-            return Double(otherTeamCount!)
-        }
     }
 }

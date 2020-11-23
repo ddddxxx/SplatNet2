@@ -5,6 +5,6 @@ public struct NicknameAndIcon: Decodable {
     public struct NicknameAndIcon: Decodable {
         public var nsaId: String
         public var nickname: String
-        @SN2RemoteResource public var thumbnailUrl: URL
+        @SN2WebResource public var thumbnailUrl: SN2URL
     }
 }

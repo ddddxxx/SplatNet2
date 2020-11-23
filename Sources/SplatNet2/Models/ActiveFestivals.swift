@@ -13,9 +13,9 @@ public struct Festival: Decodable {
 extension Festival {
     
     public struct FestivalImages: Decodable {
-        @SN2RemoteResource public var alpha: URL
-        @SN2RemoteResource public var panel: URL
-        @SN2RemoteResource public var bravo: URL
+        @SN2WebResource public var alpha: SN2URL
+        @SN2WebResource public var panel: SN2URL
+        @SN2WebResource public var bravo: SN2URL
     }
     
     public struct FestivalNames: Decodable {
@@ -31,9 +31,9 @@ extension Festival {
     }
     
     public struct FestivalTimes: Decodable {
-        @Timestamp public var result: Date
-        @Timestamp public var announce: Date
-        @Timestamp public var start: Date
-        @Timestamp public var end: Date
+        @Timestamp public var result: SN2Date
+        @Timestamp public var announce: SN2Date
+        @Timestamp public var start: SN2Date
+        @Timestamp public var end: SN2Date
     }
 }
