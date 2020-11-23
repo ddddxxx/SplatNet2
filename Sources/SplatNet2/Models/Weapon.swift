@@ -1,4 +1,4 @@
-public struct Weapon: Decodable {
+public struct Weapon: Codable {
     public var id: String
     public var name: String
     @SN2WebResource public var image: SN2URL
@@ -6,7 +6,7 @@ public struct Weapon: Decodable {
     public var sub: Equipment
     public var special: Equipment
     
-    public struct Equipment: Decodable {
+    public struct Equipment: Codable {
         public var id: String
         public var name: String
         @SN2WebResource public var imageA: SN2URL

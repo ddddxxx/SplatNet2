@@ -1,8 +1,8 @@
-public struct TeamResult: Decodable {
+public struct TeamResult: Codable {
     public var key: Key
     public var name: String
     
-    public enum Key: String, Decodable {
+    public enum Key: String, Codable {
         case victory
         case defeat
     }

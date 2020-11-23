@@ -1,4 +1,4 @@
-public struct Player: Decodable {
+public struct Player: Codable {
     
     public var principalId: String
     public var nickname: String
@@ -14,7 +14,7 @@ public struct Player: Decodable {
     public var clothesSkills: ClothingSkill
     public var shoesSkills: ClothingSkill
     
-    public struct Udemae: Decodable {
+    public struct Udemae: Codable {
         public var name: String?
         public var sPlusNumber: Int?
         public var isX: Bool
@@ -22,11 +22,11 @@ public struct Player: Decodable {
         public var isNumberReached: Bool?
     }
     
-    public struct ClothingSkill: Decodable {
+    public struct ClothingSkill: Codable {
         public var main: Skill
         public var subs: [Skill?]
         
-        public struct Skill: Decodable {
+        public struct Skill: Codable {
             public var id: String
             public var name: String
             @SN2WebResource public var image: SN2URL

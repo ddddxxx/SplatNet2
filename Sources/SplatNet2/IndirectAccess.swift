@@ -18,6 +18,14 @@ public struct IndirectValue<Accessor: IndirectAccessor> {
     }
 }
 
+extension IndirectValue: Encodable where Accessor.Input: Encodable {
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(intermediate)
+    }
+}
+
 extension IndirectValue: Decodable where Accessor.Input: Decodable {
     
     public init(from decoder: Decoder) throws {

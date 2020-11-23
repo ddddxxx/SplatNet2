@@ -1,4 +1,4 @@
-public struct Battle: Decodable {
+public struct Battle: Codable {
     
     public var battleNumber: String
     public var type: BattleType
@@ -19,7 +19,7 @@ public struct Battle: Decodable {
     public var otherTeamMembers: [TeamMember]?
     @Timestamp public var startTime: SN2Date
 
-    public enum BattleType: String, Decodable {
+    public enum BattleType: String, Codable {
         case regular
         case gachi
         case league

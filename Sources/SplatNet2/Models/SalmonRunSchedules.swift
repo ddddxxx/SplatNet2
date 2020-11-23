@@ -1,4 +1,4 @@
-public struct SalmonRunSchedules: Decodable {
+public struct SalmonRunSchedules: Codable {
     
     public var schedules: [Schedule]
     public var details: [Schedule]
@@ -6,7 +6,7 @@ public struct SalmonRunSchedules: Decodable {
 
 extension SalmonRunSchedules {
     
-    public struct Schedule: Decodable {
+    public struct Schedule: Codable {
         
         @Timestamp public var startTime: SN2Date
         @Timestamp public var endTime: SN2Date
@@ -17,24 +17,24 @@ extension SalmonRunSchedules {
 
 extension SalmonRunSchedules.Schedule {
     
-    public struct Stage: Decodable {
+    public struct Stage: Codable {
         public var name: String
         @SN2WebResource public var image: SN2URL
     }
     
-    public struct Weapon: Decodable {
+    public struct Weapon: Codable {
         public var id: String
         public var weapon: WeaponDetail?
         public var coopSpecialWeapon: CoopSpecialWeapon?
         
-        public struct WeaponDetail: Decodable {
+        public struct WeaponDetail: Codable {
             public var id: String
             public var name: String
             @SN2WebResource public var thumbnail: SN2URL
             @SN2WebResource public var image: SN2URL
         }
         
-        public struct CoopSpecialWeapon: Decodable {
+        public struct CoopSpecialWeapon: Codable {
             public var name: String
             @SN2WebResource public var image: SN2URL
         }

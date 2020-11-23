@@ -1,4 +1,4 @@
-public struct TeamMember: Decodable {
+public struct TeamMember: Codable {
     public var killCount: Int
     public var assistCount: Int
     public var deathCount: Int

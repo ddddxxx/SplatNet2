@@ -1,3 +1,3 @@
-public struct BattleOverview: Decodable {
+public struct BattleOverview: Codable {
     public var results: [Battle]
 }

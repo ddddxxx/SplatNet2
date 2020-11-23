@@ -1,4 +1,4 @@
-public struct Schedules: Decodable {
+public struct Schedules: Codable {
     public var regular: [Schedule]
     public var gachi: [Schedule]
     public var league: [Schedule]
@@ -6,7 +6,7 @@ public struct Schedules: Decodable {
 
 extension Schedules {
     
-    public struct Schedule: Decodable {
+    public struct Schedule: Codable {
         public var id: Int
         public var stageA: Stage
         public var stageB: Stage
@@ -19,12 +19,12 @@ extension Schedules {
 
 extension Schedules.Schedule {
     
-    public struct GameMode: Decodable {
+    public struct GameMode: Codable {
         
         public var key: Key
         public var name: String
         
-        public enum Key: String, Decodable {
+        public enum Key: String, Codable {
             case regular
             case gachi
             case league
