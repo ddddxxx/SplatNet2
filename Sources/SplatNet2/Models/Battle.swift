@@ -7,11 +7,15 @@ public struct Battle: Codable {
     public var rule: GameRule
     public var myTeamResult: TeamResult
     public var otherTeamResult: TeamResult
+    public var leaguePoint: Double?
+    public var maxLeaguePoint: Double?
     public var myEstimateLeaguePoint: Int?
     public var otherEstimateLeaguePoint: Int?
     public var estimateGachiPower: Int?
     public var myTeamPercentage: Double?
     public var otherTeamPercentage: Double?
+    public var xPower: Int?
+    public var estimateXPower: Int?
     public var myTeamCount: Int?
     public var otherTeamCount: Int?
     public var playerResult: TeamMember
