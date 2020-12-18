@@ -57,8 +57,24 @@ extension SplatNet2API: TargetType {
     }
     
     public var sampleData: Data {
-        // TODO: sample data
-        return Data()
+        guard let fileName = sampleDataFileName else {
+            return Data()
+        }
+        let url = Bundle.module.url(forResource: "SN2SampleData/\(fileName)", withExtension: "json")!
+        return try! Data(contentsOf: url)
+    }
+}
+
+private extension SplatNet2API {
+    
+    var sampleDataFileName: String? {
+        switch self {
+        case .nicknameAndIcon:
+            return "nickname_and_icon"
+        default:
+            // TODO: sample
+            return nil
+        }
     }
 }
 

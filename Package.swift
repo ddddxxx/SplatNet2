@@ -27,6 +27,9 @@ let package = Package(
             dependencies: [
                 "SplatNet2",
                 .product(name: "Moya", package: "Moya", condition: .when(platforms: [.iOS, .macOS, .tvOS, .watchOS])),
+            ],
+            resources: [
+                .copy("SN2SampleData")
             ]),
         .testTarget(
             name: "SplatNet2Tests",
