@@ -6,7 +6,7 @@ import SplatNet2
 import SplatNet2API
 
 let badAuthProvider = MoyaProvider<SplatNet2API>(plugins: [SplatNet2Auth(iksmSession: "bad session")])
-let stubbingProvider = MoyaProvider<SplatNet2API>(stubClosure: MoyaProvider.delayedStub(1))
+let stubbingProvider = MoyaProvider<SplatNet2API>(stubClosure: MoyaProvider.delayedStub(0.1))
 
 final class SplatNet2APITests: XCTestCase {
     
@@ -19,81 +19,65 @@ final class SplatNet2APITests: XCTestCase {
         wait(for: [expect], timeout: 10)
     }
     
-    func testStubbing() {
-        let battleInformationExpect = XCTestExpectation(description: "Request battleInformation")
-        stubbingProvider.request(.battleInformation) { result in
+    func request<T: Decodable>(_ target: SplatNet2API, decodeAs: T.Type, body: @escaping (T) -> Void) {
+        let expect = XCTestExpectation(description: "request \(target)")
+        stubbingProvider.request(target) { result in
             AssertNoThrow {
-                let obj = try result.get().map(BattleOverview.self, using: JSONDecoder.snakeCaseKeyStrategy)
-                XCTAssertEqual(obj.results.count, 50)
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let obj = try result.get().map(decodeAs, using: decoder)
+                body(obj)
             }
-            battleInformationExpect.fulfill()
+            expect.fulfill()
         }
-        
-        let resultExpect = XCTestExpectation(description: "Request result")
-        stubbingProvider.request(.result(battleNumber: "6688")) { result in
-            AssertNoThrow {
-                let obj = try result.get().map(Battle.self, using: JSONDecoder.snakeCaseKeyStrategy)
-                XCTAssertEqual(obj.battleNumber, "6688")
-            }
-            resultExpect.fulfill()
+        wait(for: [expect], timeout: 1)
+    }
+    
+    func testBattleInformation() {
+        request(.battleInformation, decodeAs: BattleOverview.self) { obj in
+            XCTAssertEqual(obj.results.count, 50)
         }
-        
-        let schedulesExpect = XCTestExpectation(description: "Request schedules")
-        stubbingProvider.request(.schedules) { result in
-            AssertNoThrow {
-                let obj = try result.get().map(Schedules.self, using: JSONDecoder.snakeCaseKeyStrategy)
-                XCTAssertEqual(obj.regular.count, 12)
-                XCTAssertEqual(obj.gachi.count, 12)
-                XCTAssertEqual(obj.league.count, 12)
-            }
-            schedulesExpect.fulfill()
+    }
+    
+    func testBattleResult() {
+        request(.result(battleNumber: "42"), decodeAs: Battle.self) { obj in
+            XCTAssertEqual(obj.battleNumber, "6688")
         }
-        
-        let salmonRunSchedulesExpect = XCTestExpectation(description: "Request salmonRunSchedules")
-        stubbingProvider.request(.salmonRunSchedules) { result in
-            AssertNoThrow {
-                let obj = try result.get().map(SalmonRunSchedules.self, using: JSONDecoder.snakeCaseKeyStrategy)
-                XCTAssertEqual(obj.schedules.count, 5)
-                XCTAssertEqual(obj.details.count, 2)
-            }
-            salmonRunSchedulesExpect.fulfill()
+    }
+    
+    func testSchedules() {
+        request(.schedules, decodeAs: Schedules.self) { obj in
+            XCTAssertEqual(obj.regular.count, 12)
+            XCTAssertEqual(obj.gachi.count, 12)
+            XCTAssertEqual(obj.league.count, 12)
         }
-        
-        let recordsExpect = XCTestExpectation(description: "Request records")
-        stubbingProvider.request(.records) { result in
-            AssertNoThrow {
-                _ = try result.get().map(Records.self, using: JSONDecoder.snakeCaseKeyStrategy)
-            }
-            recordsExpect.fulfill()
+    }
+    
+    func testSalmonRunSchedules() {
+        request(.salmonRunSchedules, decodeAs: SalmonRunSchedules.self) { obj in
+            XCTAssertEqual(obj.schedules.count, 5)
+            XCTAssertEqual(obj.details.count, 2)
         }
-        
-        let nicknameAndIconExpect = XCTestExpectation(description: "Request nicknameAndIcon")
-        stubbingProvider.request(.nicknameAndIcon(id: "foo")) { result in
-            AssertNoThrow {
-                let obj = try result.get().map(NicknameAndIcon.self, using: JSONDecoder.snakeCaseKeyStrategy)
-                XCTAssertEqual(obj.nicknameAndIcons.count, 1)
-                XCTAssertEqual(obj.nicknameAndIcons[0].nickname, "Zeke")
-            }
-            nicknameAndIconExpect.fulfill()
+    }
+    
+    func testRecords() {
+        request(.records, decodeAs: Records.self) { obj in
+            XCTAssertEqual(obj.records.player.playerRank, 5)
         }
-        
-        let activeFestivalsExpect = XCTestExpectation(description: "Request activeFestivals")
-        stubbingProvider.request(.activeFestivals) { result in
-            AssertNoThrow {
-                _ = try result.get().map(ActiveFestivals.self, using: JSONDecoder.snakeCaseKeyStrategy)
-            }
-            activeFestivalsExpect.fulfill()
+    }
+    
+    func testNicknameAndIcon() {
+        request(.nicknameAndIcon(id: "foo"), decodeAs: NicknameAndIcon.self) { obj in
+            XCTAssertEqual(obj.nicknameAndIcons.count, 1)
+            XCTAssertEqual(obj.nicknameAndIcons[0].nickname, "Zeke")
         }
-        
-        wait(for: [
-            battleInformationExpect,
-            resultExpect,
-            schedulesExpect,
-            salmonRunSchedulesExpect,
-            recordsExpect,
-            nicknameAndIconExpect,
-            activeFestivalsExpect,
-        ], timeout: 10)
+    }
+    
+    func testActiveFestivals() {
+        request(.activeFestivals, decodeAs: ActiveFestivals.self) { obj in
+            XCTAssertEqual(obj.festivals.count, 1)
+            XCTAssertEqual(obj.festivals[0].names.alphaShort, "Trick")
+        }
     }
 }
 
