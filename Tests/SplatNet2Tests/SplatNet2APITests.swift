@@ -23,9 +23,7 @@ final class SplatNet2APITests: XCTestCase {
         let battleInformationExpect = XCTestExpectation(description: "Request battleInformation")
         stubbingProvider.request(.battleInformation) { result in
             AssertNoThrow {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let obj = try result.get().map(BattleOverview.self, using: decoder)
+                let obj = try result.get().map(BattleOverview.self, using: JSONDecoder.snakeCaseKeyStrategy)
                 XCTAssertEqual(obj.results.count, 50)
             }
             battleInformationExpect.fulfill()
@@ -34,9 +32,7 @@ final class SplatNet2APITests: XCTestCase {
         let resultExpect = XCTestExpectation(description: "Request result")
         stubbingProvider.request(.result(battleNumber: "6688")) { result in
             AssertNoThrow {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let obj = try result.get().map(Battle.self, using: decoder)
+                let obj = try result.get().map(Battle.self, using: JSONDecoder.snakeCaseKeyStrategy)
                 XCTAssertEqual(obj.battleNumber, "6688")
             }
             resultExpect.fulfill()
@@ -45,9 +41,7 @@ final class SplatNet2APITests: XCTestCase {
         let schedulesExpect = XCTestExpectation(description: "Request schedules")
         stubbingProvider.request(.schedules) { result in
             AssertNoThrow {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let obj = try result.get().map(Schedules.self, using: decoder)
+                let obj = try result.get().map(Schedules.self, using: JSONDecoder.snakeCaseKeyStrategy)
                 XCTAssertEqual(obj.regular.count, 12)
                 XCTAssertEqual(obj.gachi.count, 12)
                 XCTAssertEqual(obj.league.count, 12)
@@ -58,9 +52,7 @@ final class SplatNet2APITests: XCTestCase {
         let salmonRunSchedulesExpect = XCTestExpectation(description: "Request salmonRunSchedules")
         stubbingProvider.request(.salmonRunSchedules) { result in
             AssertNoThrow {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let obj = try result.get().map(SalmonRunSchedules.self, using: decoder)
+                let obj = try result.get().map(SalmonRunSchedules.self, using: JSONDecoder.snakeCaseKeyStrategy)
                 XCTAssertEqual(obj.schedules.count, 5)
                 XCTAssertEqual(obj.details.count, 2)
             }
@@ -70,9 +62,7 @@ final class SplatNet2APITests: XCTestCase {
         let recordsExpect = XCTestExpectation(description: "Request records")
         stubbingProvider.request(.records) { result in
             AssertNoThrow {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let _ = try result.get().map(Records.self, using: decoder)
+                _ = try result.get().map(Records.self, using: JSONDecoder.snakeCaseKeyStrategy)
             }
             recordsExpect.fulfill()
         }
@@ -80,9 +70,7 @@ final class SplatNet2APITests: XCTestCase {
         let nicknameAndIconExpect = XCTestExpectation(description: "Request nicknameAndIcon")
         stubbingProvider.request(.nicknameAndIcon(id: "foo")) { result in
             AssertNoThrow {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let obj = try result.get().map(NicknameAndIcon.self, using: decoder)
+                let obj = try result.get().map(NicknameAndIcon.self, using: JSONDecoder.snakeCaseKeyStrategy)
                 XCTAssertEqual(obj.nicknameAndIcons.count, 1)
                 XCTAssertEqual(obj.nicknameAndIcons[0].nickname, "Zeke")
             }
@@ -92,9 +80,7 @@ final class SplatNet2APITests: XCTestCase {
         let activeFestivalsExpect = XCTestExpectation(description: "Request activeFestivals")
         stubbingProvider.request(.activeFestivals) { result in
             AssertNoThrow {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let _ = try result.get().map(ActiveFestivals.self, using: decoder)
+                _ = try result.get().map(ActiveFestivals.self, using: JSONDecoder.snakeCaseKeyStrategy)
             }
             activeFestivalsExpect.fulfill()
         }
