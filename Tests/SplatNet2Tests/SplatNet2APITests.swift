@@ -1,23 +1,17 @@
 #if canImport(Moya)
 
 import XCTest
+import Alamofire
 import Moya
 import SplatNet2
 import SplatNet2API
 
-let badAuthProvider = MoyaProvider<SplatNet2API>(plugins: [SplatNet2Auth(iksmSession: "bad session")])
 let stubbingProvider = MoyaProvider<SplatNet2API>(stubClosure: MoyaProvider.delayedStub(0.1))
+let sn2Provider = ProcessInfo.processInfo
+    .environment["IKSM_SESSION"]
+    .map { MoyaProvider<SplatNet2API>(plugins: [SplatNet2Auth(iksmSession: $0)]) }
 
 final class SplatNet2APITests: XCTestCase {
-    
-    func testBadAuthRequest() {
-        let expect = XCTestExpectation()
-        badAuthProvider.request(.battleInformation) { result in
-            XCTAssertEqual(try? result.get().statusCode, 403)
-            expect.fulfill()
-        }
-        wait(for: [expect], timeout: 10)
-    }
     
     func request<T: Decodable>(_ target: SplatNet2API, decodeAs: T.Type, body: @escaping (T) -> Void) {
         let expect = XCTestExpectation(description: "request \(target)")

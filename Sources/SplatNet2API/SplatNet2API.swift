@@ -1,8 +1,4 @@
-#if canImport(Moya)
-
 import Foundation
-import SplatNet2
-import Moya
 
 public enum SplatNet2API {
     case battleInformation
@@ -14,13 +10,13 @@ public enum SplatNet2API {
     case activeFestivals
 }
 
-extension SplatNet2API: TargetType {
+public extension SplatNet2API {
     
-    public var baseURL: URL {
+    var baseURL: URL {
         return URL(string: "https://app.splatoon2.nintendo.net")!
     }
     
-    public var path: String {
+    var path: String {
         switch self {
         case .battleInformation:
             return "/results"
@@ -39,6 +35,19 @@ extension SplatNet2API: TargetType {
         }
     }
     
+    var sampleData: Data {
+        let path = "SN2SampleData/\(sampleDataFileName)"
+        let url = Bundle.module.url(forResource: path, withExtension: "json")!
+        return try! Data(contentsOf: url)
+    }
+}
+
+#if canImport(Moya)
+
+import Moya
+
+extension SplatNet2API: TargetType {
+    
     public var method: Moya.Method {
         return .get
     }
@@ -52,16 +61,16 @@ extension SplatNet2API: TargetType {
         }
     }
     
+    public var validationType: Moya.ValidationType {
+        return .successCodes
+    }
+    
     public var headers: [String : String]? {
         return ["Content-type": "application/json"]
     }
-    
-    public var sampleData: Data {
-        let path = "SN2SampleData/\(sampleDataFileName)"
-        let url = Bundle.module.url(forResource: path, withExtension: "json")!
-        return try! Data(contentsOf: url)
-    }
 }
+
+#endif // canImport(Moya)
 
 private extension SplatNet2API {
     
@@ -84,5 +93,3 @@ private extension SplatNet2API {
         }
     }
 }
-
-#endif // canImport(Moya)
