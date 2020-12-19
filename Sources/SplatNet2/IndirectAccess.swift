@@ -11,14 +11,14 @@ public enum IndirectAccessors {}
 @propertyWrapper
 public struct IndirectValue<Accessor: IndirectAccessor> {
     
-    private let intermediate: Accessor.Input
+    private let rawValue: Accessor.Input
     
     public var wrappedValue: Accessor.Output {
-        Accessor.access(intermediate)
+        Accessor.access(rawValue)
     }
     
     public var projectedValue: Accessor.Input {
-        return intermediate
+        return rawValue
     }
 }
 
@@ -26,13 +26,13 @@ extension IndirectValue: Encodable where Accessor.Input: Encodable {
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-        try container.encode(intermediate)
+        try container.encode(rawValue)
     }
 }
 
 extension IndirectValue: Decodable where Accessor.Input: Decodable {
     
     public init(from decoder: Decoder) throws {
-        intermediate = try decoder.singleValueContainer().decode(Accessor.Input.self)
+        rawValue = try decoder.singleValueContainer().decode(Accessor.Input.self)
     }
 }
