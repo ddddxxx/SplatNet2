@@ -20,7 +20,13 @@ final class SplatNet2Tests: XCTestCase {
     func testStubbing() {
         let expect = XCTestExpectation()
         stubbingProvider.request(.nicknameAndIcon(id: "foo")) { result in
-            XCTAssertNoThrow({ try result.get().map(NicknameAndIcon.self) })
+            AssertNoThrow {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let obj = try result.get().map(NicknameAndIcon.self, using: decoder)
+                XCTAssertEqual(obj.nicknameAndIcons.count, 1)
+                XCTAssertEqual(obj.nicknameAndIcons[0].nickname, "Zeke")
+            }
             expect.fulfill()
         }
         wait(for: [expect], timeout: 10)
@@ -29,4 +35,8 @@ final class SplatNet2Tests: XCTestCase {
     static var allTests = [
         ("testRequest", testBadAuthRequest),
     ]
+}
+
+func AssertNoThrow(_ expression: () throws -> Void, _ message: @autoclosure () -> String = "", file: StaticString = #filePath, line: UInt = #line) {
+    XCTAssertNoThrow(try expression(), message(), file: file, line: line)
 }
