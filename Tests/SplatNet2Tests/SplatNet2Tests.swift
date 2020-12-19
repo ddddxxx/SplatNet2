@@ -31,10 +31,6 @@ final class SplatNet2Tests: XCTestCase {
         }
         wait(for: [expect], timeout: 10)
     }
-
-    static var allTests = [
-        ("testRequest", testBadAuthRequest),
-    ]
 }
 
 func AssertNoThrow(_ expression: () throws -> Void, _ message: @autoclosure () -> String = "", file: StaticString = #filePath, line: UInt = #line) {
