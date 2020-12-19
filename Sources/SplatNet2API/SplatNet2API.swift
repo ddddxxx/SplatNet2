@@ -62,7 +62,7 @@ extension SplatNet2API: TargetType {
     }
     
     public var validationType: Moya.ValidationType {
-        return .successCodes
+        return .none
     }
     
     public var headers: [String : String]? {
