@@ -57,17 +57,15 @@ extension SplatNet2API: TargetType {
     }
     
     public var sampleData: Data {
-        guard let fileName = sampleDataFileName else {
-            return Data()
-        }
-        let url = Bundle.module.url(forResource: "SN2SampleData/\(fileName)", withExtension: "json")!
+        let path = "SN2SampleData/\(sampleDataFileName)"
+        let url = Bundle.module.url(forResource: path, withExtension: "json")!
         return try! Data(contentsOf: url)
     }
 }
 
 private extension SplatNet2API {
     
-    var sampleDataFileName: String? {
+    var sampleDataFileName: String {
         switch self {
         case .battleInformation:
             return "results"
