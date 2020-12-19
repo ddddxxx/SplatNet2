@@ -2,6 +2,17 @@ name: CI
 
 on:
   push:
+    paths:
+      - '.github/workflows/ci.yml'
+      - 'Package*'
+      - 'Sources/**'
+      - 'Tests/**'
+  pull_request:
+    paths:
+      - '.github/workflows/ci.yml'
+      - 'Package*'
+      - 'Sources/**'
+      - 'Tests/**'
 
 jobs:
   mac:
