@@ -69,11 +69,20 @@ private extension SplatNet2API {
     
     var sampleDataFileName: String? {
         switch self {
+        case .battleInformation:
+            return "results"
+        case .result:
+            return "result"
+        case .schedules:
+            return "schedules"
+        case .salmonRunSchedules:
+            return "coop_schedules"
+        case .records:
+            return "records"
         case .nicknameAndIcon:
             return "nickname_and_icon"
-        default:
-            // TODO: sample
-            return nil
+        case .activeFestivals:
+            return "festivals_active"
         }
     }
 }

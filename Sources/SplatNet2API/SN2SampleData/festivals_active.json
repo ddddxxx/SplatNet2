@@ -1,0 +1,52 @@
+{
+  "festivals": [
+    {
+      "colors": {
+        "bravo": {
+          "b": 0.8,
+          "r": 0.5333334,
+          "a": 1,
+          "css_rgb": "rgb(53%,2%,80%)",
+          "g": 0.02
+        },
+        "middle": {
+          "css_rgb": "rgb(31%,90%,62%)",
+          "g": 0.9019608,
+          "b": 0.6235294,
+          "a": 1,
+          "r": 0.3058824
+        },
+        "alpha": {
+          "css_rgb": "rgb(93%,44%,15%)",
+          "g": 0.4431373,
+          "r": 0.9254902,
+          "a": 1,
+          "b": 0.145098
+        }
+      },
+      "images": {
+        "panel": "/images/festival/ae3bbc0b7ccfb6f686938a14ce7a725b.png",
+        "bravo": "/images/festival/6bf7d31afbd3c9d9605036a4086352a0.png",
+        "alpha": "/images/festival/0957e57c58c75b6897b8cff48017464b.png"
+      },
+      "special_stage": {
+        "id": "115",
+        "image": "/images/stage/609b50a5e61db8324d45933b897159fe2d7e797f.png",
+        "name": "Railway Chillin'"
+      },
+      "names": {
+        "bravo_long": "TREAT",
+        "bravo_short": "Treat",
+        "alpha_short": "Trick",
+        "alpha_long": "TRICK"
+      },
+      "times": {
+        "result": 1604275200,
+        "start": 1604095200,
+        "end": 1604268000,
+        "announce": 1602835200
+      },
+      "festival_id": 4063
+    }
+  ]
+}
