@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+
+jobs:
+  mac:
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: swift -version
+      - run: swift test 
+
+  linux:
+    strategy:
+      matrix:
+        swift_version: ['5.3']
+    runs-on: ubuntu-latest
+    container:
+      image: swift:${{ matrix.swift_version }}
+    steps:
+      - uses: actions/checkout@v1
+      - run: swift -version
+      - run: swift test --enable-test-discovery
