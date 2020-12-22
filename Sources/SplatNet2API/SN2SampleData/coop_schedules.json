@@ -1,0 +1,118 @@
+{
+  "schedules": [
+    {
+      "start_time": 1608228000,
+      "end_time": 1608357600
+    },
+    {
+      "start_time": 1608379200,
+      "end_time": 1608530400
+    },
+    {
+      "start_time": 1608552000,
+      "end_time": 1608681600
+    },
+    {
+      "start_time": 1608703200,
+      "end_time": 1608832800
+    },
+    {
+      "start_time": 1608854400,
+      "end_time": 1608984000
+    }
+  ],
+  "details": [
+    {
+      "start_time": 1608228000,
+      "end_time": 1608357600,
+      "stage": {
+        "name": "Marooner's Bay",
+        "image": "/images/coop_stage/e07d73b7d9f0c64e552b34a2e6c29b8564c63388.png"
+      },
+      "weapons": [
+        {
+          "id": "70",
+          "weapon": {
+            "image": "/images/weapon/2e2b59379b8f14cfed0600f84590be0ecad707b6.png",
+            "name": "Splattershot Pro",
+            "id": "70",
+            "thumbnail": "/images/weapon/05d735502f00fe9cbcaca8714f7102653da888fd.png"
+          }
+        },
+        {
+          "weapon": {
+            "id": "5040",
+            "thumbnail": "/images/weapon/78f0df8c7b0f625d91f5b4ea953b10872109c77b.png",
+            "image": "/images/weapon/ba750d284eb067abdc995435c3358eed4e6f90fa.png",
+            "name": "Dark Tetra Dualies"
+          },
+          "id": "5040"
+        },
+        {
+          "id": "20",
+          "weapon": {
+            "thumbnail": "/images/weapon/be61eacdea2c695d28ec5d60e1a04fafbc384736.png",
+            "id": "20",
+            "name": "Splash-o-matic",
+            "image": "/images/weapon/e5a97d52f12a83a037526588363021f2c1f718b0.png"
+          }
+        },
+        {
+          "weapon": {
+            "thumbnail": "/images/weapon/0a362970b38864f80cca68fed6deb43354333703.png",
+            "id": "240",
+            "name": "Rapid Blaster",
+            "image": "/images/weapon/72bdcf5f6077bd7149832153034b3f43d16ac461.png"
+          },
+          "id": "240"
+        }
+      ]
+    },
+    {
+      "stage": {
+        "image": "/images/coop_stage/65c68c6f0641cc5654434b78a6f10b0ad32ccdee.png",
+        "name": "Spawning Grounds"
+      },
+      "start_time": 1608379200,
+      "end_time": 1608530400,
+      "weapons": [
+        {
+          "id": "5010",
+          "weapon": {
+            "name": "Splat Dualies",
+            "image": "/images/weapon/bb5caf24e43f8c7ceb126670bf24fd3aa9a3c3fc.png",
+            "thumbnail": "/images/weapon/c60760efc43e3a509187a1b714be477f7fb6c514.png",
+            "id": "5010"
+          }
+        },
+        {
+          "id": "300",
+          "weapon": {
+            "thumbnail": "/images/weapon/41001d5ba8ce0f05aaa00f9a0d6368b1fa109c73.png",
+            "id": "300",
+            "name": "L-3 Nozzlenose",
+            "image": "/images/weapon/202724be5bb5e59457227d087d7c48a32c01db24.png"
+          }
+        },
+        {
+          "id": "210",
+          "weapon": {
+            "image": "/images/weapon/cfafc8bc42bcd89058fdb22b7b943fb9f893adb8.png",
+            "name": "Blaster",
+            "id": "210",
+            "thumbnail": "/images/weapon/5e26f6a8217836c25ac0c75f05b13e6051bdc644.png"
+          }
+        },
+        {
+          "weapon": {
+            "id": "2030",
+            "thumbnail": "/images/weapon/029c670a12106e979c7b775979f86e5759784e3c.png",
+            "image": "/images/weapon/a6279990ad871fccdd9f2a64a2951f8726f45c48.png",
+            "name": "E-liter 4K"
+          },
+          "id": "2030"
+        }
+      ]
+    }
+  ]
+}

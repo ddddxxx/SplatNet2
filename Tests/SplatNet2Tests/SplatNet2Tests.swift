@@ -1,12 +1,14 @@
 import XCTest
-@testable import SplatNet2
+import SplatNet2
 
 final class SplatNet2Tests: XCTestCase {
-    func testExample() {
-        
+    
+    func testPropertyWrapper() throws {
+        let json = #"{"id":"foo","name":"bar","image":"baz"}"#.data(using: .utf8)!
+        let obj = try JSONDecoder().decode(Stage.self, from: json)
+        XCTAssertEqual(obj.id, "foo")
+        XCTAssertEqual(obj.name, "bar")
+        XCTAssertEqual(obj.$image, "baz")
+        XCTAssertEqual(obj.image, URL(string: "https://app.splatoon2.nintendo.net/baz")!)
     }
-
-    static var allTests = [
-        ("testExample", testExample),
-    ]
 }
