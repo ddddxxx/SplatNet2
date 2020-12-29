@@ -15,14 +15,6 @@ public struct Player: Codable {
     public var shoesSkills: ClothingSkill
     public var playerType: PlayerType
     
-    public struct Udemae: Codable {
-        public var name: String?
-        public var sPlusNumber: Int?
-        public var isX: Bool
-        public var number: Int?
-        public var isNumberReached: Bool?
-    }
-    
     public struct ClothingSkill: Codable {
         public var main: Skill
         public var subs: [Skill?]
