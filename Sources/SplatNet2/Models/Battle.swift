@@ -5,6 +5,7 @@ public struct Battle: Codable {
     public var stage: Stage
     public var gameMode: GameMode
     public var rule: GameRule
+    public var udemae: Udemae?
     public var myTeamResult: TeamResult
     public var otherTeamResult: TeamResult
     public var leaguePoint: Double?
