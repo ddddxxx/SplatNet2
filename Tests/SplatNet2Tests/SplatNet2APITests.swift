@@ -73,6 +73,20 @@ final class SplatNet2APITests: XCTestCase {
             XCTAssertEqual(obj.festivals[0].names.alphaShort, "Trick")
         }
     }
+    
+    func testJobOverview() {
+        request(.jobOverview, decodeAs: JobOverview.self) { obj in
+            XCTAssertEqual(obj.summary.stats.count, 6)
+            XCTAssertEqual(obj.rewardGear.id, "21009")
+            XCTAssertEqual(obj.results.count, 50)
+        }
+    }
+    
+    func testJob() {
+        request(.job(id: 270), decodeAs: Job.self) { obj in
+            XCTAssertEqual(obj.jobId, 270)
+        }
+    }
 }
 
 #endif // canImport(Moya)

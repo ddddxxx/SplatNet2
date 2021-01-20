@@ -8,6 +8,8 @@ public enum SplatNet2API {
     case records
     case nicknameAndIcon(id: String)
     case activeFestivals
+    case jobOverview
+    case job(id: Int)
 }
 
 public extension SplatNet2API {
@@ -32,11 +34,16 @@ public extension SplatNet2API {
             return "/nickname_and_icon"
         case .activeFestivals:
             return "/festivals/active"
+        case .jobOverview:
+            return "coop_results"
+        case .job(let id):
+            return "coop_results/\(id)"
         }
     }
     
     var sampleData: Data {
         let path = "SN2SampleData/\(sampleDataFileName)"
+        print(path)
         let url = Bundle.module.url(forResource: path, withExtension: "json")!
         return try! Data(contentsOf: url)
     }
@@ -90,6 +97,10 @@ private extension SplatNet2API {
             return "nickname_and_icon"
         case .activeFestivals:
             return "festivals_active"
+        case .jobOverview:
+            return "coop_results"
+        case .job:
+            return "coop_result"
         }
     }
 }
