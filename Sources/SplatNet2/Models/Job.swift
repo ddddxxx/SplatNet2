@@ -69,9 +69,14 @@ extension Job {
         public var waterLevel: WaterLevel
         
         public struct WaterLevel: Codable {
-            public var key: String
+            public var key: WaterLevelKey
             public var name: String
+            
+            public enum WaterLevelKey: String, Codable {
+                case high, normal, low
+            }
         }
+        
         public struct EventType: Codable {
             public var key: String
             public var name: String
