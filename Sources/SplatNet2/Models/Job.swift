@@ -13,7 +13,7 @@ public struct Job: Codable {
     public var otherResults: [PlayerResult]?
     public var playerType: Player.PlayerType
     public var schedule: SalmonRunSchedules.Schedule
-    public var waveDetails: [WaveDetails]
+    public var waveDetails: [WaveDetail]
     @Timestamp public var playTime: SN2Date
     @Timestamp public var startTime: SN2Date
     @Timestamp public var endTime: SN2Date
@@ -60,7 +60,7 @@ extension Job {
         public var weaponList: [SalmonRunSchedules.Schedule.Weapon]
     }
     
-    public struct WaveDetails: Codable {
+    public struct WaveDetail: Codable {
         public var eventType: EventType
         public var goldenIkuraNum: Int
         public var goldenIkuraPopNum: Int
