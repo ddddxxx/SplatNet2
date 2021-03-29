@@ -15,7 +15,7 @@ public struct Battle: Codable {
     public var estimateGachiPower: Int?
     public var myTeamPercentage: Double?
     public var otherTeamPercentage: Double?
-    public var xPower: Int?
+    public var xPower: Double?
     public var estimateXPower: Int?
     public var myTeamCount: Int?
     public var otherTeamCount: Int?
