@@ -14,6 +14,9 @@ public struct Player: Codable {
     public var clothesSkills: ClothingSkill
     public var shoesSkills: ClothingSkill
     public var playerType: PlayerType
+    public var head: Gear
+    public var clothes: Gear
+    public var shoes: Gear
     
     public struct ClothingSkill: Codable {
         public var main: Skill
