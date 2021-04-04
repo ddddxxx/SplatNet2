@@ -16,7 +16,7 @@ public struct Gear: Codable {
         public var id: String
         public var name: String
         @SN2WebResource public var image: SN2URL
-        public var frequentSkill: FrequentSkill
+        public var frequentSkill: FrequentSkill?
         
         public struct FrequentSkill: Codable {
             public var id: String
