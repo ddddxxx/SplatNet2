@@ -17,6 +17,8 @@ public struct Player: Codable {
     public var head: Gear
     public var clothes: Gear
     public var shoes: Gear
+    public var maxLeaguePointTeam: Double?
+    public var maxLeaguePointPair: Double?
     
     public struct ClothingSkill: Codable {
         public var main: Skill
