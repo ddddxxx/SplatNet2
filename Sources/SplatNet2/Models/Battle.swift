@@ -22,6 +22,7 @@ public struct Battle: Codable {
     public var playerResult: TeamMember
     public var myTeamMembers: [TeamMember]?
     public var otherTeamMembers: [TeamMember]?
+    public var crownPlayers: [String]?
     @Timestamp public var startTime: SN2Date
 
     public enum BattleType: String, Codable {
